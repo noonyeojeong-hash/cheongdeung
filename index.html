@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>청등야화 그림 앨범</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#15111e;--pn:#1e1830;--ln:#3a2f52;--gd:#d8bf86;--mu:#9d90b3;--tx:#ece6f6;--ro:#c9466a}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:'Noto Sans KR',sans-serif}
+a{color:inherit}
+header{position:sticky;top:0;z-index:5;background:#15111ef2;backdrop-filter:blur(8px);border-bottom:1px solid var(--ln)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;gap:12px;padding:14px 0 10px}
+.lamp{width:12px;height:16px;border-radius:40% 40% 46% 46%;background:radial-gradient(circle at 50% 45%,#fff3c4,#f2a94a 60%,#b4542a);box-shadow:0 0 12px #ffb35a;animation:glow 2.6s ease-in-out infinite;flex:none}
+@keyframes glow{50%{box-shadow:0 0 22px #ffc46a,0 0 40px #ff9a4a55}}
+h1{margin:0;font:700 19px 'Gowun Batang',serif;letter-spacing:1px}
+h1 small{display:block;font:400 11px 'Noto Sans KR',sans-serif;letter-spacing:3px;color:var(--gd);margin-top:2px}
+.count{margin-left:auto;font-size:12px;color:var(--mu);white-space:nowrap}
+.bar{display:flex;gap:8px;align-items:center;padding:0 0 12px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;overflow-x:auto;flex:1 1 100%;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--ln);background:var(--pn);color:var(--mu);border-radius:99px;padding:6px 12px;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.chip b{color:var(--gd);font-weight:700;margin-left:4px}
+.chip.on{border-color:var(--gd);color:var(--tx);background:#2a2240}
+.search{flex:1;min-width:0;border:1px solid var(--ln);background:var(--pn);color:var(--tx);border-radius:10px;padding:9px 12px;font:inherit;font-size:13.5px;outline:none}
+.search:focus{border-color:var(--gd)}
+.tg{flex:none;font-size:12px;color:var(--mu);display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+main{padding:18px 0 60px}
+section{margin-bottom:28px}
+section h2{display:flex;align-items:baseline;gap:8px;margin:0 0 4px;font:700 16px 'Gowun Batang',serif}
+section h2 span{font:400 12px sans-serif;color:var(--mu)}
+section p.ds{margin:0 0 12px;font-size:12.5px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.grid.tall{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.card{position:relative;background:var(--pn);border:1px solid var(--ln);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s;animation:in .4s ease both}
+.card:hover{transform:translateY(-2px);border-color:#d8bf8699}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.thumb{aspect-ratio:4/3;background:#0f0c17 center/cover no-repeat}
+.tall .thumb{aspect-ratio:3/4}
+.contain .thumb{background-size:contain;background-color:#241d36}
+.meta{padding:7px 9px 8px}
+.nm{font-size:12px;word-break:break-all;line-height:1.35}
+.fm{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
+.fm i{font-style:normal;font-size:10px;color:var(--gd);border:1px solid #d8bf8655;border-radius:4px;padding:0 5px}
+.empty,.err{text-align:center;color:var(--mu);padding:40px 0;font-size:14px}
+.err b{color:var(--ro)}
+/* viewer */
+.vw{position:fixed;inset:0;z-index:20;background:#0b0912ee;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+.vw.on{display:flex;animation:in .25s ease}
+.vw img{max-width:100%;max-height:68vh;border-radius:10px;box-shadow:0 14px 40px #000c;background:#241d36}
+.vw .info{margin-top:14px;text-align:center;width:100%;max-width:560px}
+.vw .fn{font-size:15px;font-weight:700;word-break:break-all}
+.vw .sub{font-size:12px;color:var(--mu);margin:4px 0 12px}
+.vw .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.vw button,.vw a.b{border:1px solid var(--ln);background:var(--pn);color:var(--tx);border-radius:10px;padding:8px 12px;font:inherit;font-size:12.5px;cursor:pointer;text-decoration:none}
+.vw button:hover,.vw a.b:hover{border-color:var(--gd)}
+.vw .x{position:absolute;top:12px;right:14px;font-size:22px;background:none;border:0;color:var(--mu)}
+.vw .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:26px;background:none;border:0;color:var(--mu);padding:12px}
+.vw .pv{left:4px}.vw .nx{right:4px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#2a2240;border:1px solid var(--gd);color:var(--tx);padding:8px 14px;border-radius:99px;font-size:12.5px;z-index:30;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+footer{text-align:center;color:var(--mu);font-size:11.5px;padding:0 0 30px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><span class="lamp"></span><h1>청등야화 그림 앨범<small>靑燈夜話 · ALBUM</small></h1><span class="count" id="count">불러오는 중…</span></div>
+  <div class="bar">
+    <div class="chips" id="chips"></div>
+    <input class="search" id="q" placeholder="파일 이름으로 찾기 (예: diary, cover, 400)">
+    <label class="tg"><input type="checkbox" id="dup"> png·jpg 원본도 따로</label>
+  </div>
+</div></header>
+<main><div class="wrap" id="list"><p class="empty">그림 목록을 불러오고 있어요…</p></div></main>
+<footer>깃허브 저장소에 그림을 올리면 여기에 자동으로 나타나요.</footer>
+
+<div class="vw" id="vw">
+  <button class="x" id="vx" aria-label="닫기">✕</button>
+  <button class="nav pv" id="vp" aria-label="이전">‹</button>
+  <button class="nav nx" id="vn" aria-label="다음">›</button>
+  <img id="vi" alt="">
+  <div class="info">
+    <div class="fn" id="vf"></div>
+    <div class="sub" id="vs"></div>
+    <div class="btns">
+      <button data-copy="name">이름 복사</button>
+      <button data-copy="url">주소 복사</button>
+      <button data-copy="img">{{img::주소}} 복사</button>
+      <a class="b" id="vo" target="_blank" rel="noopener">원본 열기</a>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== 설정: 저장소가 바뀌면 여기만 고치면 돼요 ===== */
+const OWNER = "noonyeojeong-hash";
+const REPO = "cheongdeung";
+const BRANCH = "main";
+/* ================================================= */
+const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
+const IMG = /\.(webp|png|jpe?g|gif|avif|svg)$/i;
+
+// 묶음 규칙: 위에서부터 먼저 맞는 묶음에 들어가요
+const GROUPS = [
+  { id:"bg",    name:"장소 배경",       ds:"사화폰 화면 배경 (bg-*)",                      test:n=>/^bg-/.test(n) },
+  { id:"diary", name:"일기 사진",       ds:"사화일기 사진 칸 (diary-*)",                    test:n=>/^diary-/.test(n) },
+  { id:"cover", name:"연이소설 표지",   ds:"연이소설 썸네일 (yeoni-cover-1~6)",            test:n=>/^yeoni-cover/.test(n), tall:true },
+  { id:"face",  name:"프로필",          ds:"단톡·연락처 프로필 (*_400) 과 얼굴컷",          test:n=>/_400\.|^(cheongun|deunghwi|bangul|gilgyeong|yeoni|jindara|hongsi|eop)\./.test(n), tall:true },
+  { id:"act",   name:"사화 동작",       ds:"사화폰 속 움직임 (a-*)",                        test:n=>/^a-/.test(n), contain:true },
+  { id:"pose",  name:"사화 표정·자세",  ds:"사화폰 기본 스프라이트",                          test:n=>/^(idle|shy|anxious|possessed|rest|sit|sleep|surprise|tea|walk-\d|wave)\./.test(n), contain:true },
+  { id:"ui",    name:"사화폰 꾸미기",   ds:"배경화면 · 아이콘 · 이모티콘 시트",              test:n=>/^sahwa-/.test(n), contain:true },
+  { id:"etc",   name:"기타",            ds:"아직 묶음이 없는 그림",                         test:()=>true }
+];
+
+const $ = s => document.querySelector(s);
+let ALL = [], VIEW = [], cur = 0, group = "all";
+
+const base = p => p.replace(/\.[^.]+$/, "");
+const ext  = p => (p.match(/\.([^.]+)$/) || [,""])[1].toLowerCase();
+const kb   = b => b >= 1048576 ? (b/1048576).toFixed(1)+"MB" : Math.max(1,Math.round(b/1024))+"KB";
+const rank = e => ({webp:0,jpg:1,jpeg:1,png:2,gif:3,avif:4,svg:5}[e] ?? 9);
+
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove("on"),1400); }
+async function copy(t){ try{ await navigator.clipboard.writeText(t); toast("복사했어요"); }catch(e){ prompt("복사해서 쓰세요", t); } }
+
+async function load(){
+  try{
+    const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/git/trees/${BRANCH}?recursive=1`);
+    if(!r.ok) throw new Error(r.status === 403 ? "깃허브 조회 한도(1시간 60번)를 넘었어요. 잠시 후 새로고침해 주세요." : "목록을 못 불러왔어요 ("+r.status+")");
+    const j = await r.json();
+    const files = j.tree.filter(x => x.type==="blob" && IMG.test(x.path));
+    // 같은 이름의 webp/png/jpg 를 한 장으로 묶기
+    const map = new Map();
+    for(const f of files){
+      const k = base(f.path);
+      if(!map.has(k)) map.set(k, []);
+      map.get(k).push(f);
+    }
+    ALL = [...map.entries()].map(([k, fs]) => {
+      fs.sort((a,b) => rank(ext(a.path)) - rank(ext(b.path)));
+      const name = fs[0].path.split("/").pop();
+      const folder = fs[0].path.includes("/") ? fs[0].path.split("/").slice(0,-1).join("/") : "";
+      const g = folder ? { id:"f:"+folder, name:"📁 "+folder, ds:"폴더", test:()=>true } : GROUPS.find(g => g.test(name));
+      return { key:k, files:fs, main:fs[0], name, group:g };
+    }).sort((a,b) => a.key.localeCompare(b.key, "ko", {numeric:true}));
+    render();
+  }catch(e){
+    $("#list").innerHTML = `<p class="err"><b>앗.</b> ${e.message}</p>`;
+    $("#count").textContent = "";
+  }
+}
+
+function items(){
+  const q = $("#q").value.trim().toLowerCase();
+  const dup = $("#dup").checked;
+  let list = [];
+  for(const it of ALL){
+    const fs = dup ? it.files : [it.main];
+    for(const f of fs) list.push({ ...it, main:f, name:f.path.split("/").pop() });
+  }
+  if(q) list = list.filter(it => it.main.path.toLowerCase().includes(q));
+  return list;
+}
+
+function render(){
+  const list = items();
+  const groups = [];
+  for(const it of list){
+    let g = groups.find(x => x.g.id === it.group.id);
+    if(!g){ g = { g:it.group, items:[] }; groups.push(g); }
+    g.items.push(it);
+  }
+  const order = id => { const i = GROUPS.findIndex(g => g.id===id); return i<0 ? 50 : i; };
+  groups.sort((a,b) => order(a.g.id) - order(b.g.id));
+
+  $("#chips").innerHTML = `<span class="chip ${group==="all"?"on":""}" data-g="all">전체<b>${list.length}</b></span>` +
+    groups.map(x => `<span class="chip ${group===x.g.id?"on":""}" data-g="${x.g.id}">${x.g.name}<b>${x.items.length}</b></span>`).join("");
+  $("#count").textContent = `그림 ${ALL.length}장`;
+
+  const shown = group==="all" ? groups : groups.filter(x => x.g.id===group);
+  VIEW = shown.flatMap(x => x.items);
+  if(!VIEW.length){ $("#list").innerHTML = `<p class="empty">찾는 그림이 없어요.</p>`; return; }
+  let n = 0;
+  $("#list").innerHTML = shown.map(x => `
+    <section>
+      <h2>${x.g.name}<span>${x.items.length}장</span></h2>
+      <p class="ds">${x.g.ds}</p>
+      <div class="grid ${x.g.tall?"tall":""} ${x.g.contain?"contain":""}">
+        ${x.items.map(it => {
+          const i = n++;
+          const fm = (it.files.length>1 && !$("#dup").checked) ? it.files.map(f=>`<i>${ext(f.path)}</i>`).join("") : `<i>${ext(it.main.path)}</i>`;
+          return `<div class="card" data-i="${i}" style="animation-delay:${Math.min(i,30)*18}ms">
+            <div class="thumb" style="background-image:url('${RAW}${encodeURI(it.main.path)}')"></div>
+            <div class="meta"><div class="nm">${it.name}</div><div class="fm">${fm}<i>${kb(it.main.size)}</i></div></div>
+          </div>`;
+        }).join("")}
+      </div>
+    </section>`).join("");
+}
+
+function open(i){
+  cur = (i + VIEW.length) % VIEW.length;
+  const it = VIEW[cur], url = RAW + encodeURI(it.main.path);
+  $("#vi").src = url; $("#vi").alt = it.name;
+  $("#vf").textContent = it.name;
+  $("#vs").textContent = `${it.group.name} · ${kb(it.main.size)}` + (it.files.length>1 ? ` · ${it.files.map(f=>ext(f.path)).join("/")} 있음` : "");
+  $("#vo").href = url;
+  $("#vw").classList.add("on");
+}
+const close = () => $("#vw").classList.remove("on");
+
+document.addEventListener("click", e => {
+  const chip = e.target.closest(".chip"); if(chip){ group = chip.dataset.g; render(); window.scrollTo({top:0,behavior:"smooth"}); return; }
+  const card = e.target.closest(".card"); if(card){ open(+card.dataset.i); return; }
+  const b = e.target.closest("[data-copy]");
+  if(b){ const it = VIEW[cur], url = RAW + encodeURI(it.main.path);
+    copy(b.dataset.copy==="name" ? it.name : b.dataset.copy==="url" ? url : `{{img::${url}}}`); return; }
+  if(e.target.id==="vw") close();
+});
+$("#vx").onclick = close;
+$("#vp").onclick = () => open(cur-1);
+$("#vn").onclick = () => open(cur+1);
+document.addEventListener("keydown", e => {
+  if(!$("#vw").classList.contains("on")) return;
+  if(e.key==="Escape") close(); if(e.key==="ArrowLeft") open(cur-1); if(e.key==="ArrowRight") open(cur+1);
+});
+let sx = 0;
+$("#vw").addEventListener("touchstart", e => sx = e.touches[0].clientX, {passive:true});
+$("#vw").addEventListener("touchend", e => { const d = e.changedTouches[0].clientX - sx; if(Math.abs(d) > 50) open(cur + (d < 0 ? 1 : -1)); });
+$("#q").addEventListener("input", render);
+$("#dup").addEventListener("change", render);
+load();
+</script>
+</body>
+</html>
