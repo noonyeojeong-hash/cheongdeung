@@ -110,9 +110,16 @@ const GROUPS = [
   { id:"diary", name:"일기 사진",       ds:"사화일기 사진 칸 (diary-*)",                    test:n=>/^diary-/.test(n) },
   { id:"cover", name:"연이소설 표지",   ds:"연이소설 썸네일 (yeoni-cover-1~6)",            test:n=>/^yeoni-cover/.test(n), tall:true },
   { id:"face",  name:"프로필",          ds:"단톡·연락처 프로필 (*_400) 과 얼굴컷",          test:n=>/_400\.|^(cheongun|deunghwi|bangul|gilgyeong|yeoni|jindara|hongsi|eop)\./.test(n), tall:true },
-  { id:"act",   name:"사화 동작",       ds:"사화폰 속 움직임 (a-*)",                        test:n=>/^a-/.test(n), contain:true },
+  { id:"act",   name:"사화 동작",       ds:"사화폰 속 움직임 (a-*)",                        test:n=>/^a-(?!dh-)/.test(n), contain:true },
   { id:"pose",  name:"사화 표정·자세",  ds:"사화폰 기본 스프라이트",                          test:n=>/^(idle|shy|anxious|possessed|rest|sit|sleep|surprise|tea|walk-\d|wave)\./.test(n), contain:true },
   { id:"ui",    name:"사화폰 꾸미기",   ds:"배경화면 · 아이콘 · 이모티콘 시트",              test:n=>/^sahwa-/.test(n), contain:true },
+  { id:"dhact", name:"등휘 동작",       ds:"등휘폰 속 움직임 (a-dh-*)",                     test:n=>/^a-dh-/.test(n), contain:true },
+  { id:"dhg",   name:"등휘 일러",       ds:"등휘 장면 일러스트 (dh-g-*)",                   test:n=>/^dh-g-/.test(n) },
+  { id:"dhmind",name:"머릿속 멤버",     ds:"카이렌 · 백수 · 본능 · 가계부 · 외로움",        test:n=>/^dh-(kairen|baeksu|bonneung|gagyebu|oeroum)\./.test(n), contain:true },
+  { id:"dhui",  name:"등휘폰 꾸미기",   ds:"아이콘 · 이모티콘 시트 (dh-icons, dh-emotes)",   test:n=>/^dh-(icons|emotes)/.test(n), contain:true },
+  { id:"dhintro",name:"등휘 소개글",    ds:"소개글 그림 (dh-intro-*)",                      test:n=>/^dh-intro-/.test(n) },
+  { id:"dhstart",name:"등휘 도입부",    ds:"도입부 3종 (dh-start-*)",                       test:n=>/^dh-start-/.test(n) },
+  { id:"dhetc", name:"등휘 기타",       ds:"아직 묶음이 없는 등휘 그림 (dh-*)",              test:n=>/^dh-/.test(n) },
   { id:"etc",   name:"기타",            ds:"아직 묶음이 없는 그림",                         test:()=>true }
 ];
 
